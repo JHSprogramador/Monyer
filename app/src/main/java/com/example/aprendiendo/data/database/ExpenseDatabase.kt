@@ -21,15 +21,15 @@ import kotlinx.coroutines.launch
 )
 @TypeConverters(DateConverter::class)
 abstract class ExpenseDatabase : RoomDatabase() {
-    
+
     abstract fun expenseDao(): ExpenseDao
     abstract fun categoryDao(): CategoryDao
     abstract fun savingGoalDao(): SavingGoalDao
-    
+
     companion object {
         @Volatile
         private var INSTANCE: ExpenseDatabase? = null
-        
+
         fun getDatabase(context: Context): ExpenseDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -38,12 +38,13 @@ abstract class ExpenseDatabase : RoomDatabase() {
                     "expense_database"
                 )
                 .addCallback(DatabaseCallback())
+                .fallbackToDestructiveMigration()
                 .build()
                 INSTANCE = instance
                 instance
             }
         }
-        
+
         private class DatabaseCallback : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
@@ -54,10 +55,10 @@ abstract class ExpenseDatabase : RoomDatabase() {
                 }
             }
         }
-        
+
         private suspend fun populateDatabase(database: ExpenseDatabase) {
             val categoryDao = database.categoryDao()
-            
+
             // Insertar categorías predeterminadas
             val defaultCategories = listOf(
                 Category("Alimentación", "#FF5722", "restaurant"),
@@ -69,10 +70,11 @@ abstract class ExpenseDatabase : RoomDatabase() {
                 Category("Servicios", "#FFC107", "build"),
                 Category("Otros", "#795548", "category")
             )
-            
+
             defaultCategories.forEach { category ->
                 categoryDao.insertCategory(category)
             }
         }
     }
 }
+

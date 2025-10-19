@@ -38,15 +38,12 @@ class MainActivity : AppCompatActivity() {
 
             when (currentDestination) {
                 R.id.ExpenseListFragment -> {
-                    // Navegar a agregar gasto
                     navController.navigate(R.id.action_ExpenseListFragment_to_AddExpenseFragment)
                 }
                 R.id.SavingGoalsFragment -> {
-                    // Navegar a agregar objetivo
                     navController.navigate(R.id.action_SavingGoalsFragment_to_AddSavingGoalFragment)
                 }
                 R.id.DashboardFragment -> {
-                    // En Dashboard, mostrar opciones
                     val options = arrayOf("➕ Agregar Gasto", "🎯 Agregar Objetivo")
                     MaterialAlertDialogBuilder(this)
                         .setTitle("¿Qué deseas agregar?")
@@ -59,13 +56,12 @@ class MainActivity : AppCompatActivity() {
                         .show()
                 }
                 else -> {
-                    // En otras pantallas, mostrar mensaje
                     Snackbar.make(binding.root, "Vuelve a la pantalla principal", Snackbar.LENGTH_SHORT).show()
                 }
             }
         }
 
-        // Ocultar FAB en pantallas de formulario para evitar confusión
+        // Ocultar FAB en pantallas de formulario
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.AddExpenseFragment, R.id.AddSavingGoalFragment -> {
