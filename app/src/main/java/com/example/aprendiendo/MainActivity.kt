@@ -61,10 +61,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Ocultar FAB en pantallas de formulario
+        // Ocultar FAB en pantallas de formulario y Asistente de IA
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.AddExpenseFragment, R.id.AddSavingGoalFragment -> {
+                R.id.AddExpenseFragment,
+                R.id.AddSavingGoalFragment,
+                R.id.AIAssistantFragment -> {
                     binding.fab.hide()
                 }
                 else -> {

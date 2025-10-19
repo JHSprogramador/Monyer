@@ -43,6 +43,15 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        // Botón del Asistente de IA
+        binding.cardAIAssistant.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.action_DashboardFragment_to_AIAssistantFragment)
+            } catch (e: Exception) {
+                showMessage("Abriendo Asistente de IA...")
+            }
+        }
+
         // Card de Resumen de Gastos - navega a la lista de gastos
         binding.cardExpenseSummary.setOnClickListener {
             try {

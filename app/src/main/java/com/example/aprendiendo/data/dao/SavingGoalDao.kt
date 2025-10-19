@@ -9,6 +9,9 @@ interface SavingGoalDao {
     @Query("SELECT * FROM saving_goals ORDER BY createdDate DESC")
     fun getAllSavingGoals(): LiveData<List<SavingGoal>>
 
+    @Query("SELECT * FROM saving_goals ORDER BY createdDate DESC")
+    suspend fun getAllSavingGoalsSync(): List<SavingGoal>
+
     @Query("SELECT * FROM saving_goals WHERE isCompleted = 0 ORDER BY createdDate DESC")
     fun getActiveSavingGoals(): LiveData<List<SavingGoal>>
 

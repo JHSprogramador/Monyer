@@ -18,6 +18,21 @@
         <action
             android:id="@+id/action_DashboardFragment_to_SavingGoalsFragment"
             app:destination="@id/SavingGoalsFragment" />
+        <action
+            android:id="@+id/action_DashboardFragment_to_AIAssistantFragment"
+            app:destination="@id/AIAssistantFragment" />
+    </fragment>
+
+    <!-- Asistente de IA -->
+    <fragment
+        android:id="@+id/AIAssistantFragment"
+        android:name="com.example.aprendiendo.ui.fragments.AIAssistantFragment"
+        android:label="Asistente IA"
+        tools:layout="@layout/fragment_ai_assistant">
+
+        <action
+            android:id="@+id/action_AIAssistantFragment_to_DashboardFragment"
+            app:destination="@id/DashboardFragment" />
     </fragment>
 
     <!-- Lista de gastos -->

@@ -10,6 +10,9 @@ interface ExpenseDao {
     @Query("SELECT * FROM expenses ORDER BY date DESC")
     fun getAllExpenses(): LiveData<List<Expense>>
 
+    @Query("SELECT * FROM expenses ORDER BY date DESC")
+    suspend fun getAllExpensesSync(): List<Expense>
+
     @Query("SELECT * FROM expenses WHERE category = :category ORDER BY date DESC")
     fun getExpensesByCategory(category: String): LiveData<List<Expense>>
 
