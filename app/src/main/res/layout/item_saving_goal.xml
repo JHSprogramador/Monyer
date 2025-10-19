@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header del objetivo -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/tvGoalName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nombre del objetivo"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Vacaciones de verano" />
+
+            <TextView
+                android:id="@+id/tvGoalStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="En progreso"
+                android:textSize="12sp"
+                android:background="@drawable/bg_status_chip"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                tools:text="Completado" />
+
+        </LinearLayout>
+
+        <!-- DescripciÃ³n -->
+        <TextView
+            android:id="@+id/tvGoalDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DescripciÃ³n del objetivo"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="12dp"
+            tools:text="Ahorrar para las vacaciones familiares" />
+
+        <!-- Progreso -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvCurrentAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="$0"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary"
+                tools:text="$750" />
+
+            <TextView
+                android:id="@+id/tvTargetAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="de $1000"
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                tools:text="de $1000" />
+
+        </LinearLayout>
+
+        <!-- Barra de progreso -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            tools:progress="75" />
+
+        <!-- Porcentaje y fecha lÃ­mite -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvProgress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0%"
+                android:textSize="12sp"
+                android:textColor="?attr/colorPrimary"
+                tools:text="75%" />
+
+            <TextView
+                android:id="@+id/tvDeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sin fecha lÃ­mite"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorTertiary"
+                tools:text="31 Dic 2025" />
+
+        </LinearLayout>
+
+        <!-- Botones de acciÃ³n -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.Material3.Button.TextButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

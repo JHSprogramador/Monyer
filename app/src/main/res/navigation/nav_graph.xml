@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/DashboardFragment">
+
+    <!-- Dashboard - Pantalla principal con estadísticas -->
+    <fragment
+        android:id="@+id/DashboardFragment"
+        android:name="com.example.aprendiendo.ui.fragments.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
+
+        <action
+            android:id="@+id/action_DashboardFragment_to_ExpenseListFragment"
+            app:destination="@id/ExpenseListFragment" />
+        <action
+            android:id="@+id/action_DashboardFragment_to_SavingGoalsFragment"
+            app:destination="@id/SavingGoalsFragment" />
+    </fragment>
+
+    <!-- Lista de gastos -->
+    <fragment
+        android:id="@+id/ExpenseListFragment"
+        android:name="com.example.aprendiendo.ui.fragments.ExpenseListFragment"
+        android:label="Gastos"
+        tools:layout="@layout/fragment_expense_list">
+
+        <action
+            android:id="@+id/action_ExpenseListFragment_to_AddExpenseFragment"
+            app:destination="@id/AddExpenseFragment" />
+        <action
+            android:id="@+id/action_ExpenseListFragment_to_SavingGoalsFragment"
+            app:destination="@id/SavingGoalsFragment" />
+        <action
+            android:id="@+id/action_ExpenseListFragment_to_DashboardFragment"
+            app:destination="@id/DashboardFragment" />
+    </fragment>
+
+    <!-- Agregar nuevo gasto -->
+    <fragment
+        android:id="@+id/AddExpenseFragment"
+        android:name="com.example.aprendiendo.ui.fragments.AddExpenseFragment"
+        android:label="Agregar Gasto"
+        tools:layout="@layout/fragment_add_expense">
+
+        <action
+            android:id="@+id/action_AddExpenseFragment_to_ExpenseListFragment"
+            app:destination="@id/ExpenseListFragment"
+            app:popUpTo="@id/ExpenseListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Objetivos de ahorro -->
+    <fragment
+        android:id="@+id/SavingGoalsFragment"
+        android:name="com.example.aprendiendo.ui.fragments.SavingGoalsFragment"
+        android:label="Objetivos"
+        tools:layout="@layout/fragment_saving_goals">
+
+        <action
+            android:id="@+id/action_SavingGoalsFragment_to_ExpenseListFragment"
+            app:destination="@id/ExpenseListFragment" />
+        <action
+            android:id="@+id/action_SavingGoalsFragment_to_AddSavingGoalFragment"
+            app:destination="@id/AddSavingGoalFragment" />
+        <action
+            android:id="@+id/action_SavingGoalsFragment_to_DashboardFragment"
+            app:destination="@id/DashboardFragment" />
+    </fragment>
+
+    <!-- Agregar nuevo objetivo de ahorro -->
+    <fragment
+        android:id="@+id/AddSavingGoalFragment"
+        android:name="com.example.aprendiendo.ui.fragments.AddSavingGoalFragment"
+        android:label="Agregar Objetivo"
+        tools:layout="@layout/fragment_add_saving_goal">
+
+        <action
+            android:id="@+id/action_AddSavingGoalFragment_to_SavingGoalsFragment"
+            app:destination="@id/SavingGoalsFragment"
+            app:popUpTo="@id/SavingGoalsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>
+
