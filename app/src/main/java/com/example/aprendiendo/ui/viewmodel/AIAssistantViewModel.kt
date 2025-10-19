@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.aprendiendo.ai.GeminiAIService
 import com.example.aprendiendo.data.database.ExpenseDatabase
+import com.example.aprendiendo.data.entities.AIConversation
 import kotlinx.coroutines.launch
 
 data class ChatMessage(
@@ -20,6 +21,7 @@ class AIAssistantViewModel(application: Application) : AndroidViewModel(applicat
     private val aiService = GeminiAIService()
     private val expenseDao = ExpenseDatabase.getDatabase(application).expenseDao()
     private val savingGoalDao = ExpenseDatabase.getDatabase(application).savingGoalDao()
+    private val conversationDao = ExpenseDatabase.getDatabase(application).aiConversationDao()
 
     private val _chatMessages = MutableLiveData<List<ChatMessage>>(emptyList())
     val chatMessages: LiveData<List<ChatMessage>> = _chatMessages
@@ -30,6 +32,9 @@ class AIAssistantViewModel(application: Application) : AndroidViewModel(applicat
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
+    // LiveData para ver el historial de conversaciones guardadas
+    val savedConversations: LiveData<List<AIConversation>> = conversationDao.getAllConversations()
+
     init {
         // Mensaje de bienvenida
         addMessage(
@@ -37,6 +42,7 @@ class AIAssistantViewModel(application: Application) : AndroidViewModel(applicat
                 text = "¡Hola! Soy tu asistente financiero personal con IA. Puedo ayudarte a analizar tus gastos, " +
                         "sugerir formas de ahorrar, y darte ideas de inversión basadas en tu situación financiera. " +
                         "\n\n💡 Tip: Usa el botón '🧪 PROBAR CONEXIÓN' para verificar que tu API key funcione correctamente.\n\n" +
+                        "Todas tus conversaciones se guardan automáticamente para que puedas consultarlas después.\n\n" +
                         "¿En qué puedo ayudarte hoy?",
                 isUser = false
             )
@@ -89,6 +95,9 @@ class AIAssistantViewModel(application: Application) : AndroidViewModel(applicat
                 // Agregar respuesta de la IA
                 addMessage(ChatMessage(text = aiResponse, isUser = false))
 
+                // GUARDAR LA CONVERSACIÓN EN LA BASE DE DATOS
+                saveConversationToDatabase(userMessage, aiResponse)
+
             } catch (e: Exception) {
                 _errorMessage.value = "Error al procesar tu pregunta: ${e.message}"
                 addMessage(
@@ -100,6 +109,19 @@ class AIAssistantViewModel(application: Application) : AndroidViewModel(applicat
             } finally {
                 _isLoading.value = false
             }
+        }
+    }
+
+    private suspend fun saveConversationToDatabase(message: String, response: String) {
+        try {
+            val conversation = AIConversation(
+                message = message,
+                response = response
+            )
+            conversationDao.insertConversation(conversation)
+        } catch (e: Exception) {
+            // Silenciosamente falla si hay error al guardar
+            android.util.Log.e("AIAssistantViewModel", "Error al guardar conversación: ${e.message}")
         }
     }
 
@@ -138,6 +160,18 @@ class AIAssistantViewModel(application: Application) : AndroidViewModel(applicat
         )
     }
 
+    fun deleteConversation(conversation: AIConversation) {
+        viewModelScope.launch {
+            conversationDao.deleteConversation(conversation)
+        }
+    }
+
+    fun toggleFavorite(conversationId: Long, isFavorite: Boolean) {
+        viewModelScope.launch {
+            conversationDao.toggleFavorite(conversationId, isFavorite)
+        }
+    }
+
     private fun addMessage(message: ChatMessage) {
         val currentMessages = _chatMessages.value.orEmpty().toMutableList()
         currentMessages.add(message)
@@ -148,4 +182,3 @@ class AIAssistantViewModel(application: Application) : AndroidViewModel(applicat
         _errorMessage.value = null
     }
 }
-

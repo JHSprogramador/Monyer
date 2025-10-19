@@ -7,16 +7,18 @@ import com.example.aprendiendo.data.converters.DateConverter
 import com.example.aprendiendo.data.dao.CategoryDao
 import com.example.aprendiendo.data.dao.ExpenseDao
 import com.example.aprendiendo.data.dao.SavingGoalDao
+import com.example.aprendiendo.data.dao.AIConversationDao
 import com.example.aprendiendo.data.entities.Category
 import com.example.aprendiendo.data.entities.Expense
 import com.example.aprendiendo.data.entities.SavingGoal
+import com.example.aprendiendo.data.entities.AIConversation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Database(
-    entities = [Expense::class, Category::class, SavingGoal::class],
-    version = 1,
+    entities = [Expense::class, Category::class, SavingGoal::class, AIConversation::class],
+    version = 2, // Incrementada la versión de la base de datos
     exportSchema = false
 )
 @TypeConverters(DateConverter::class)
@@ -25,6 +27,7 @@ abstract class ExpenseDatabase : RoomDatabase() {
     abstract fun expenseDao(): ExpenseDao
     abstract fun categoryDao(): CategoryDao
     abstract fun savingGoalDao(): SavingGoalDao
+    abstract fun aiConversationDao(): AIConversationDao
 
     companion object {
         @Volatile
@@ -77,4 +80,3 @@ abstract class ExpenseDatabase : RoomDatabase() {
         }
     }
 }
-

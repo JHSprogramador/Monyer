@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aprendiendo.R
 import com.example.aprendiendo.databinding.FragmentAiAssistantBinding
 import com.example.aprendiendo.ui.adapters.ChatMessageAdapter
 import com.example.aprendiendo.ui.viewmodel.AIAssistantViewModel
@@ -39,7 +41,25 @@ class AIAssistantFragment : Fragment() {
         setupRecyclerView()
         setupSuggestedQuestions()
         setupInputArea()
+        setupToolbar()
         observeViewModel()
+    }
+
+    private fun setupToolbar() {
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_history -> {
+                    // Navegar al historial de conversaciones
+                    findNavController().navigate(R.id.action_AIAssistantFragment_to_ConversationHistoryFragment)
+                    true
+                }
+                R.id.action_clear_chat -> {
+                    viewModel.clearChat()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -130,4 +150,3 @@ class AIAssistantFragment : Fragment() {
         _binding = null
     }
 }
-

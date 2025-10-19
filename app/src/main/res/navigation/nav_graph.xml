@@ -33,6 +33,21 @@
         <action
             android:id="@+id/action_AIAssistantFragment_to_DashboardFragment"
             app:destination="@id/DashboardFragment" />
+        <action
+            android:id="@+id/action_AIAssistantFragment_to_ConversationHistoryFragment"
+            app:destination="@id/ConversationHistoryFragment" />
+    </fragment>
+
+    <!-- Historial de conversaciones de IA -->
+    <fragment
+        android:id="@+id/ConversationHistoryFragment"
+        android:name="com.example.aprendiendo.ui.fragments.ConversationHistoryFragment"
+        android:label="Historial"
+        tools:layout="@layout/fragment_conversation_history">
+
+        <action
+            android:id="@+id/action_ConversationHistoryFragment_to_AIAssistantFragment"
+            app:destination="@id/AIAssistantFragment" />
     </fragment>
 
     <!-- Lista de gastos -->
@@ -100,4 +115,3 @@
     </fragment>
 
 </navigation>
-
