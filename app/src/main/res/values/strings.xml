@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Control de Gastos</string>
+    <string name="app_name">Ahorro Mensual</string>
     <string name="action_settings">Configuración</string>
-    
+
     <!-- Navigation -->
     <string name="expenses_label">Gastos</string>
     <string name="goals_label">Objetivos</string>
     <string name="add_expense_label">Agregar Gasto</string>
     <string name="add_goal_label">Agregar Objetivo</string>
-    
+
     <!-- Categories -->
     <string-array name="expense_categories">
         <item>Alimentación</item>
@@ -49,11 +49,10 @@
         placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
         convallis.\n\n
         Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+        malesuada fames ac turpis egestas. Phasellus lacinia dui vel vehicula gravida. Mauris
+        convallis semper euismod. Praesent accumsan urna et leo cursus, ac auctor libero sodales. In
+        semper erat a lectus tincidunt, id pulvinar nisi eleifend. Etiam augue purus, mollis quis
+        porta in, ultrices non turpis.
     </string>
 </resources>
+

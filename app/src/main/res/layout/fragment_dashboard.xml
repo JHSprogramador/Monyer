@@ -30,10 +30,15 @@
             android:textColor="?android:attr/textColorSecondary"
             android:layout_marginBottom="16dp" />
 
+        <!-- Card de Resumen de Gastos -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardExpenseSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cardElevation="4dp"
             app:cardCornerRadius="12dp">
 
@@ -58,11 +63,16 @@
                     android:weightSum="2">
 
                     <LinearLayout
+                        android:id="@+id/layoutTotalExpenses"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginEnd="8dp">
+                        android:layout_marginEnd="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -91,10 +101,15 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layoutAvgDaily"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -131,10 +146,15 @@
                     android:layout_marginBottom="4dp" />
 
                 <LinearLayout
+                    android:id="@+id/layoutTopCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="8dp">
 
                     <TextView
                         android:id="@+id/tvTopCategory"
@@ -160,10 +180,15 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Card de Top 5 Categorías -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCategoryBreakdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cardElevation="4dp"
             app:cardCornerRadius="12dp">
 
@@ -193,10 +218,15 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Card de Objetivos de Ahorro -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSavingGoals"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:cardElevation="4dp"
             app:cardCornerRadius="12dp">
 
@@ -222,12 +252,16 @@
                     android:layout_marginBottom="12dp">
 
                     <LinearLayout
+                        android:id="@+id/layoutActiveGoals"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
 
                         <TextView
                             android:id="@+id/tvActiveGoals"
@@ -248,12 +282,16 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layoutCompletedGoals"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
 
                         <TextView
                             android:id="@+id/tvCompletedGoals"
@@ -293,7 +331,8 @@
                     android:id="@+id/progressOverall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="8dp"
+                    android:max="100" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

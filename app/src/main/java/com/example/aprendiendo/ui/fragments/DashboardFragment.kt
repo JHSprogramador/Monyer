@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.aprendiendo.R
 import com.example.aprendiendo.databinding.FragmentDashboardBinding
 import com.example.aprendiendo.ui.viewmodel.ExpenseViewModel
 import com.example.aprendiendo.ui.viewmodel.SavingGoalViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,6 +39,131 @@ class DashboardFragment : Fragment() {
         savingGoalViewModel = ViewModelProvider(this)[SavingGoalViewModel::class.java]
 
         setupObservers()
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
+        // Card de Resumen de Gastos - navega a la lista de gastos
+        binding.cardExpenseSummary.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.action_DashboardFragment_to_ExpenseListFragment)
+            } catch (e: Exception) {
+                showMessage("Navegando a Gastos...")
+            }
+        }
+
+        // Card de Top 5 Categorías - navega a la lista de gastos
+        binding.cardCategoryBreakdown.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.action_DashboardFragment_to_ExpenseListFragment)
+            } catch (e: Exception) {
+                showMessage("Navegando a Gastos por Categoría...")
+            }
+        }
+
+        // Card de Objetivos de Ahorro - navega a objetivos
+        binding.cardSavingGoals.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.action_DashboardFragment_to_SavingGoalsFragment)
+            } catch (e: Exception) {
+                showMessage("Navegando a Objetivos de Ahorro...")
+            }
+        }
+
+        // Click en la categoría principal para ver detalles
+        binding.layoutTopCategory.setOnClickListener {
+            val category = binding.tvTopCategory.text.toString()
+            if (category != "N/A") {
+                showCategoryDetails(category)
+            }
+        }
+
+        // Click en Total Gastado
+        binding.layoutTotalExpenses.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.action_DashboardFragment_to_ExpenseListFragment)
+            } catch (e: Exception) {
+                showMessage("Ver todos los gastos")
+            }
+        }
+
+        // Click en Promedio Diario
+        binding.layoutAvgDaily.setOnClickListener {
+            showAverageDailyInfo()
+        }
+
+        // Click en objetivos activos
+        binding.layoutActiveGoals.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.action_DashboardFragment_to_SavingGoalsFragment)
+            } catch (e: Exception) {
+                showMessage("Ver objetivos activos")
+            }
+        }
+
+        // Click en objetivos completados
+        binding.layoutCompletedGoals.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.action_DashboardFragment_to_SavingGoalsFragment)
+            } catch (e: Exception) {
+                showMessage("Ver objetivos completados")
+            }
+        }
+    }
+
+    private fun showCategoryDetails(category: String) {
+        expenseViewModel.allExpenses.value?.let { expenses ->
+            val categoryExpenses = expenses.filter { it.category == category }
+            val formatter = NumberFormat.getCurrencyInstance(Locale.getDefault())
+            val total = categoryExpenses.sumOf { it.amount }
+            val count = categoryExpenses.size
+            val icon = getCategoryIcon(category)
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("$icon $category")
+                .setMessage(
+                    "Total gastado: ${formatter.format(total)}\n" +
+                    "Número de gastos: $count\n" +
+                    "Promedio por gasto: ${formatter.format(if (count > 0) total / count else 0.0)}"
+                )
+                .setPositiveButton("Ver Todos") { _, _ ->
+                    try {
+                        findNavController().navigate(R.id.action_DashboardFragment_to_ExpenseListFragment)
+                    } catch (e: Exception) {
+                        showMessage("Navegando a gastos...")
+                    }
+                }
+                .setNegativeButton("Cerrar", null)
+                .show()
+        }
+    }
+
+    private fun showAverageDailyInfo() {
+        expenseViewModel.allExpenses.value?.let { expenses ->
+            val formatter = NumberFormat.getCurrencyInstance(Locale.getDefault())
+            val total = expenses.sumOf { it.amount }
+            val avgDaily = total / 30
+            val avgWeekly = avgDaily * 7
+            val avgMonthly = avgDaily * 30
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("📊 Análisis de Gastos")
+                .setMessage(
+                    "Promedio diario: ${formatter.format(avgDaily)}\n" +
+                    "Promedio semanal: ${formatter.format(avgWeekly)}\n" +
+                    "Promedio mensual: ${formatter.format(avgMonthly)}\n\n" +
+                    "Basado en los últimos 30 días"
+                )
+                .setPositiveButton("Entendido", null)
+                .show()
+        }
+    }
+
+    private fun showMessage(message: String) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+            .show()
     }
 
     private fun setupObservers() {
@@ -103,7 +231,7 @@ class DashboardFragment : Fragment() {
             .take(5)
 
         val breakdown = StringBuilder()
-        sortedCategories.forEachIndexed { index, entry ->
+        sortedCategories.forEachIndexed { _, entry ->
             val total = entry.value.sumOf { it.amount }
             val icon = getCategoryIcon(entry.key)
             breakdown.append("$icon ${entry.key}: ${formatter.format(total)}\n")
