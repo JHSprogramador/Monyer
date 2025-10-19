@@ -10,7 +10,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.aprendiendo.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,9 +53,6 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         .show()
-                }
-                else -> {
-                    Snackbar.make(binding.root, "Vuelve a la pantalla principal", Snackbar.LENGTH_SHORT).show()
                 }
             }
         }
@@ -107,8 +103,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-            R.id.action_settings -> {
-                Snackbar.make(binding.root, "Configuración - Próximamente", Snackbar.LENGTH_SHORT).show()
+            R.id.action_ai_assistant -> {
+                if (currentDestination != R.id.AIAssistantFragment) {
+                    navController.navigate(R.id.AIAssistantFragment)
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

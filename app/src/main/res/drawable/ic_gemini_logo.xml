@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Logo de Gemini simplificado - Estrella -->
+    <path
+        android:pathData="M24,4L24,44"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <path
+        android:pathData="M12,24L36,24"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <path
+        android:pathData="M16,12L32,36"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <path
+        android:pathData="M16,36L32,12"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Círculo central -->
+    <path
+        android:pathData="M24,20 A4,4 0 1,1 24,28 A4,4 0 1,1 24,20"
+        android:fillColor="#FFFFFF"/>
+</vector>
+

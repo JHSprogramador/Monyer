@@ -30,67 +30,6 @@
             android:textColor="?android:attr/textColorSecondary"
             android:layout_marginBottom="16dp" />
 
-        <!-- Card de Asistente IA -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardAIAssistant"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardElevation="6dp"
-            app:cardCornerRadius="12dp"
-            app:cardBackgroundColor="?attr/colorSecondaryContainer">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🤖"
-                    android:textSize="40sp"
-                    android:layout_marginEnd="16dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Asistente IA Financiero"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSecondaryContainer" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pregunta sobre tus finanzas y obtén consejos personalizados"
-                        android:textSize="12sp"
-                        android:textColor="?attr/colorOnSecondaryContainer"
-                        android:layout_marginTop="4dp" />
-
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Abrir"
-                    style="@style/Widget.Material3.Button.TonalButton"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
         <!-- Card de Resumen de Gastos -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardExpenseSummary"

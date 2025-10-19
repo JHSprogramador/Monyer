@@ -6,24 +6,25 @@
         android:id="@+id/action_dashboard"
         android:title="Dashboard"
         android:icon="@android:drawable/ic_menu_info_details"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_expenses"
         android:title="Gastos"
         android:icon="@android:drawable/ic_menu_agenda"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_goals"
         android:title="Objetivos"
         android:icon="@android:drawable/ic_menu_save"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_settings"
-        android:title="Configuración"
-        android:icon="@android:drawable/ic_menu_preferences"
-        app:showAsAction="never" />
+        android:id="@+id/action_ai_assistant"
+        android:title="Asistente IA"
+        android:icon="@drawable/gemini"
+        app:showAsAction="always" />
+
 </menu>
 
